@@ -74,14 +74,14 @@ def _format_ranking(df, verbose=False):
     df_final = pd.DataFrame(data={"Team": team_name, final_elo_column_name: final_rank}).sort_values(
         by="Final ELO", ascending=False
     )
-    df_final["rank"] = df_final[final_elo_column_name].rank(method="min", ascending=False).astype("int")
+    df_final["Rank"] = df_final[final_elo_column_name].rank(method="min", ascending=False).astype("int")
     df_final = df_final.reset_index(drop=True)
     if verbose:
         print(df_final.to_string(index=False))
     return df_final
 
 
-def get_elo_season(df, use_mov=True, K=30, verbose=False):
+def get_elo_season(df, use_mov=True, k=30, verbose=False):
     """
     This runs the ELO algorithm to rank all teams in a given season or tournament.  It acceepts a dataframe of game
     results. The format of this dataframe is very particular. For an example look at the copa_rayados.2021.csv file
@@ -91,7 +91,7 @@ def get_elo_season(df, use_mov=True, K=30, verbose=False):
 
     :param df: A dataframe of results
     :param use_mov: Use margin-of-victory -- boolean
-    :param K: K factor for ELO
+    :param k: K factor for ELO
     :param verbose: prints ranking if True
     :return: a dictionary containing two dataframes, df_elo and df_ranking
     """
@@ -110,16 +110,16 @@ def get_elo_season(df, use_mov=True, K=30, verbose=False):
         if game["home_score"] == game["away_score"]:
             d = 0
 
-        Ra_old = _get_current_elo(df_elo, game["home_name"])
-        Rb_old = _get_current_elo(df_elo, game["away_name"])
+        ra_old = _get_current_elo(df_elo, game["home_name"])
+        rb_old = _get_current_elo(df_elo, game["away_name"])
         if use_mov:
             score_delta = game["home_score"] - game["away_score"]
         else:
             score_delta = None
-        Ra_new, Rb_new = get_elo_match(Ra_old, Rb_old, K, d, score_delta)
-        df_elo.loc[index, "home_pre_elo"] = Ra_old
+        Ra_new, Rb_new = get_elo_match(ra_old, rb_old, k, d, score_delta)
+        df_elo.loc[index, "home_pre_elo"] = ra_old
         df_elo.loc[index, "home_post_elo"] = Ra_new
-        df_elo.loc[index, "away_pre_elo"] = Rb_old
+        df_elo.loc[index, "away_pre_elo"] = rb_old
         df_elo.loc[index, "away_post_elo"] = Rb_new
 
     df_rankings = _format_ranking(df_elo, verbose=verbose)

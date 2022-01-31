@@ -1,6 +1,12 @@
 Release History
 ===============
 
+0.0.2 (2022-01-30)
+------------------
+
+- Soccer: better variable naming convention
+
+
 0.0.1 (2022-01-29)
 ------------------
 

@@ -4,7 +4,7 @@
 
 Kono Analytics Python Utilities
 ===============================
-KonoPyUtil is a library of convenience fuctions, written in Python, for Kono Analytics and anyone else who wants to use it.
+KonoPyUtil is a library of convenience functions, written in Python, for Kono Analytics and anyone else who wants to use it.
 
 You can install this utility library with pip from GitHub.
 

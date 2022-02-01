@@ -34,7 +34,8 @@ from .credentials import (
     set_credentials,
 )
 from .datasets import list_datasets, load_dataset
-from .soccer import get_elo_season, get_elo_match
+from .soccer import get_elo_season, get_elo_match, validate_elo_df
 import logging
+
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())

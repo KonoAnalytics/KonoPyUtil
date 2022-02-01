@@ -116,11 +116,11 @@ def get_elo_season(df, use_mov=True, k=30, verbose=False):
             score_delta = game["home_score"] - game["away_score"]
         else:
             score_delta = None
-        Ra_new, Rb_new = get_elo_match(ra_old, rb_old, k, d, score_delta)
+        ra_new, rb_new = get_elo_match(ra_old, rb_old, k, d, score_delta)
         df_elo.loc[index, "home_pre_elo"] = ra_old
-        df_elo.loc[index, "home_post_elo"] = Ra_new
+        df_elo.loc[index, "home_post_elo"] = ra_new
         df_elo.loc[index, "away_pre_elo"] = rb_old
-        df_elo.loc[index, "away_post_elo"] = Rb_new
+        df_elo.loc[index, "away_post_elo"] = rb_new
 
     df_rankings = _format_ranking(df_elo, verbose=verbose)
 
@@ -128,3 +128,69 @@ def get_elo_season(df, use_mov=True, k=30, verbose=False):
         "df_elo": df_elo,
         "df_rankings": df_rankings,
     }
+
+
+def validate_elo_df(df):
+    """
+    Receives a dataframe, and checks for valid columns and data types
+    required columns/datatypes:
+    match: object
+    game_time: preferably datetime, but date or any sortable object representing the actual order of games will do
+    home_name: string
+    away_name: string
+    home_score: integer
+    away_score: integer
+    any other columns are permitted, but not used
+    This doesn't check for duplicate column names (which will cause an "Unknown file error")
+
+    :param df: dataframe
+    :return: dictionary with keys "success" (True if acceptable df), "message" (Errors or empty string if none),
+    """
+    return_dict = {
+        "success": True,
+        "message": "",
+    }
+
+    column_names = {
+        "match",
+        "game_time",
+        "home_name",
+        "away_name",
+        "home_score",
+        "away_score",
+    }
+    try:
+        missing_columns = column_names - set(df)
+        if missing_columns:
+            return_dict["success"] = False
+            return_dict["message"] = f"""Missing Columns: {", ".join([mc for mc in missing_columns])}"""
+            return return_dict
+
+        for c in ["home_score", "away_score"]:
+            try:
+                df[c].astype("int")
+            except:
+                print("A")
+                return_dict["success"] = False
+                return_dict["message"] = f"""Column {c} must contain only integers."""
+                return return_dict
+
+        for c in ["match", "game_time", "home_name", "away_name"]:
+            if pd.isnull(df[c]).sum() + (df[c] == "").sum():
+                return_dict["success"] = False
+                return_dict["message"] = f"""Column {c} can not be empty."""
+                return return_dict
+
+        for c in ["match", "game_time"]:
+            try:
+                df.sort_values(by=[c])
+            except:
+                print("b")
+                return_dict["success"] = False
+                return_dict["message"] = f"""Column {c} must contain sortable values."""
+                return return_dict
+        return return_dict
+    except:
+        return_dict["success"] = False
+        return_dict["message"] = f"""Unknown file error."""
+        return return_dict

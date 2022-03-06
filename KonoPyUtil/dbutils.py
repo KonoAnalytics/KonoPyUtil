@@ -38,7 +38,7 @@ def command_query(query, engine=None, **kwargs):
     return engine.execute(sa.text(query).execution_options(autocommit=True))
 
 
-def write_dataframe(df, tablename, engine, if_exists="append", index=False, **kwargs):
+def write_dataframe(df, tablename, engine=None, if_exists="append", index=False, **kwargs):
     """
     Appends dataframe records to a database. (Creates table if it doesn't exist)
     :param df: dataframe
@@ -60,7 +60,7 @@ def write_dataframe(df, tablename, engine, if_exists="append", index=False, **kw
     except Exception as ex:
         template = "An exception of type {0} occurred. Arguments:\n{1!r}"
         message = template.format(type(ex).__name__, ex.args)
-        print(message)
+        print(f"""Warning: {message}""")
         success = False
     finally:
         if close_engine:

@@ -1,6 +1,11 @@
 Release History
 ===============
 
+1.0.0 (2022-05-24)
+------------------
+- Made Available to kono.rest
+- Radar: added geocode_ip()
+
 0.0.3 (2022-02-01)
 ------------------
 

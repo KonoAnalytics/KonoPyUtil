@@ -1,4 +1,17 @@
 """
+ .----------------.  .----------------.  .-----------------. .----------------.
+| .--------------. || .--------------. || .--------------. || .--------------. |
+| |  ___  ____   | || |     ____     | || | ____  _____  | || |     ____     | |
+| | |_  ||_  _|  | || |   .'    `.   | || ||_   \|_   _| | || |   .'    `.   | |
+| |   | |_/ /    | || |  /  .--.  \  | || |  |   \ | |   | || |  /  .--.  \  | |
+| |   |  __'.    | || |  | |    | |  | || |  | |\ \| |   | || |  | |    | |  | |
+| |  _| |  \ \_  | || |  \  `--'  /  | || | _| |_\   |_  | || |  \  `--'  /  | |
+| | |____||____| | || |   `.____.'   | || ||_____|\____| | || |   `.____.'   | |
+| |              | || |              | || |              | || |              | |
+| '--------------' || '--------------' || '--------------' || '--------------' |
+ '----------------'  '----------------'  '----------------'  '----------------'
+
+
 KonoPyUtil Library
 ~~~~~~~~~~~~~~~~~~
 KonoPyUtil is a library of convenience fuctions, written in Python, for Kono Analytics and anyone else who wants to use it.
@@ -34,7 +47,8 @@ from .credentials import (
     set_credentials,
 )
 from .datasets import list_datasets, load_dataset
-from .soccer import get_elo_season, get_elo_match, validate_elo_df
+from .soccer import get_elo_season, get_elo_match, validate_elo_df, schedule_event
+from .radar_util import geocode_ip
 import logging
 
 

@@ -47,7 +47,7 @@ from .credentials import (
     set_credentials,
 )
 from .datasets import list_datasets, load_dataset
-from .soccer import get_elo_season, get_elo_match, validate_elo_df, schedule_event
+from .soccer import get_elo_season, get_elo_match, validate_elo_df
 from .radar_util import geocode_ip
 import logging
 

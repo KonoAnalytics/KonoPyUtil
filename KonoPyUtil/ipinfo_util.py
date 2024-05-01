@@ -69,7 +69,7 @@ def geocode_ip(ip_address, use_cache=True):
     df["continentCode"] = continent["code"]
     df["latitude"] = df["latitude"].astype(float)
     df["longitude"] = df["longitude"].astype(float)
-    drop_cols = ["country_currency", "loc", "country_flag", "iseu"]
+    drop_cols = ["country_currency", "loc", "country_flag"]
     df = df.drop(columns=drop_cols)
     write_dataframe(df=df, tablename="ip_geocode", if_exists="append")
     return_dict = dict(df.iloc[0])

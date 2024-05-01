@@ -1,6 +1,12 @@
 Release History
 ===============
 
+1.0.2 (2024-05-01)
+------------------
+
+- geocode_ip(): better error handling of ipinfo return values
+
+
 1.0.1 (2024-05-01)
 ------------------
 

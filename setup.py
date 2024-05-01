@@ -14,8 +14,8 @@ install_requires = [
     "pandas==1.4.0",
     "SQLAlchemy==1.4.31",
     "environs==9.4.0",
-    "psycopg2-binary==2.9.3",
-    "radar-python==0.0.4",
+    "psycopg2-binary==2.9.6",
+    "ipinfo==5.0.1",
     "requests==2.26.0",
 ]
 

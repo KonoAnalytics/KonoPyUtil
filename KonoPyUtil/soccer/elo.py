@@ -5,6 +5,7 @@ import pandas as pd
 # https://www.geeksforgeeks.org/elo-rating-algorithm/
 # https://www.chess.com/forum/view/general/how-are-draws-calculated-in-the-elo-system
 
+
 # Function to calculate the _probability
 def _probability(rating1, rating2):
     return 1.0 * 1.0 / (1 + 1.0 * math.pow(10, 1.0 * (rating1 - rating2) / 400))

@@ -25,7 +25,6 @@ Basic usage:
 :license: Apache 2.0, see LICENSE for more details.
 """
 
-
 from .__version__ import (
     __title__,
     __description__,
@@ -48,7 +47,7 @@ from .credentials import (
 )
 from .datasets import list_datasets, load_dataset
 from .soccer import get_elo_season, get_elo_match, validate_elo_df
-from .radar_util import geocode_ip
+from .ipinfo_util import geocode_ip
 import logging
 
 

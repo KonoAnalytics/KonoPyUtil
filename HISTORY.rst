@@ -1,6 +1,13 @@
 Release History
 ===============
 
+2.0.0 (2024-08-15)
+------------------
+
+- get_txptc_plans: better error handling of ipinfo return values
+- updated dependency versions, including SQLAlchemy and Pandas
+
+
 1.0.2 (2024-05-01)
 ------------------
 

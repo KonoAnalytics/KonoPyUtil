@@ -1,7 +1,7 @@
 __title__ = "KonoPyUtil"
 __description__ = "Python Utilities for Kono Analytics"
 __url__ = "https://konoanalytics.com"
-__version__ = "1.0.2"
+__version__ = "2.0.0"
 __author__ = "Jonathan Bennett"
 __author_email__ = "info@konoanalytics.com"
 __license__ = "Apache 2.0"

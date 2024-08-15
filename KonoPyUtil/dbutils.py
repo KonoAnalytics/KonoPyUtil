@@ -33,9 +33,11 @@ def command_query(query, engine=None, **kwargs):
     if engine is None:
         close_engine = True
         engine = get_engine(**kwargs)
+    with engine.connect() as conn:
+        conn.execute(sa.text(query))
+        conn.commit()
     if close_engine:
         engine.dispose()
-    return engine.execute(sa.text(query).execution_options(autocommit=True))
 
 
 def write_dataframe(df, tablename, engine=None, if_exists="append", index=False, **kwargs):
@@ -73,7 +75,7 @@ def get_engine(credentials=None, **kwargs):
     Returns a sqlalchemy engine given appropriate inputs
     :param **kwargs: remaining parameters for sqlalchemy.create_engine()
     """
-    if not credentials:
+    if credentials is None:
         os_credentials = set_credentials()
         if not os_credentials:
             raise (MissingCredentialsError())

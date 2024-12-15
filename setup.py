@@ -36,7 +36,7 @@ setup(
     package_dir={"KonoPyUtil": "KonoPyUtil"},
     package_data={"KonoPyUtil": ["data/*"]},
     include_package_data=True,
-    python_requires=">=3.0.*",
+    python_requires=">=3.10",
     install_requires=install_requires,
     license=about["__license__"],
     project_urls={

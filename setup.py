@@ -8,7 +8,7 @@ _here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(_here, "README.rst")) as f:
     long_description = f.read()
 
-packages = ["KonoPyUtil", "KonoPyUtil/soccer"]
+packages = ["KonoPyUtil", "KonoPyUtil/soccer", "KonoPyUtil/other"]
 
 install_requires = [
     "pandas==2.2.2",

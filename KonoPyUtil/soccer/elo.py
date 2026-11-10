@@ -98,9 +98,10 @@ def get_elo_season(df, use_mov=True, k=30, verbose=False):
     """
     df_results = _format_game_results(df).copy()
     df_elo = df_results.copy()
-    df_elo["home_pre_elo"] = 1000
+    # float literals: ELO values are floats, and pandas>=3 raises on float .loc assignment into an int column
+    df_elo["home_pre_elo"] = 1000.0
     df_elo["home_post_elo"] = None
-    df_elo["away_pre_elo"] = 1000
+    df_elo["away_pre_elo"] = 1000.0
     df_elo["away_post_elo"] = None
 
     for index, game in df_results.iterrows():

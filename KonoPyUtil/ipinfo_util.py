@@ -5,7 +5,7 @@ import ipinfo
 from .credentials import set_credentials
 from .dbutils import get_engine, data_query, write_dataframe
 from .constants import US_STATE_TO_ABBREVIATION
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def _validate_ip_address(ip_address):
@@ -31,7 +31,7 @@ def geocode_ip(ip_address, use_cache=True):
         }
 
     if use_cache:
-        query = f"""SELECT * FROM ip_geocode WHERE "ip_address" = '{ip_address}' ORDER BY upload_dt_utc DESC LIMIT 1"""
+        query = f"""SELECT * FROM ip_geocode WHERE "ip_address" = '{ip_address}' ORDER BY id DESC LIMIT 1"""
         df = data_query(query=query)
         if len(df):
             return_dict = dict(df.iloc[0])
@@ -49,7 +49,7 @@ def geocode_ip(ip_address, use_cache=True):
     for k, v in details_dict.items():
         details_dict[k] = [v]
     df = pd.DataFrame.from_dict(details_dict)
-    df["upload_dt_utc"] = datetime.utcnow()
+    df["upload_dt_utc"] = datetime.now(timezone.utc)
     rename_cols = {
         "ip": "ip_address",
         "country": "countryCode",

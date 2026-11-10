@@ -1,6 +1,18 @@
 Release History
 ===============
 
+2.1.0
+----------
+
+- Upgraded dependencies: pandas 3.1.1, SQLAlchemy 2.1.8, environs 15.2.0, psycopg2-binary 2.9.13, ipinfo 5.6.0, requests 2.34.2
+- Added openpyxl (required by soccer.schedule_event for reading Excel workbooks)
+- Requires Python 3.13 or greater (pandas 3 and SQLAlchemy 2.1 require it)
+- set_credentials(): fixed loading of .env values with environs 15
+- get_engine(): explicit postgresql+psycopg2 driver (SQLAlchemy 2.1 defaults to psycopg)
+- get_engine(): fixed credentials argument being ignored (raised UnboundLocalError)
+- get_elo_season(): fixed pandas 3 dtype error
+
+
 2.0.0 (2024-08-15)
 ------------------
 

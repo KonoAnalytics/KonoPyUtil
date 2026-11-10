@@ -27,6 +27,10 @@ def set_credentials(file_and_path_to_credential_file=".env", env_var_name="DB_CR
             env = Env()
             file_and_path_formatted = os.path.abspath(file_and_path_to_credential_file)
             env.read_env(file_and_path_formatted, recurse=recurse)
+            # environs>=12 keeps .env values on the Env instance instead of os.environ
+            credentials_value = env.str(env_var_name, None)
+            if credentials_value is not None:
+                os.environ[env_var_name] = credentials_value
     if env_var_name in os.environ:
         return dict(json.loads(os.environ[env_var_name]))
     else:

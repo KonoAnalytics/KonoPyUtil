@@ -1,4 +1,4 @@
-"""
+r"""
  .----------------.  .----------------.  .-----------------. .----------------.
 | .--------------. || .--------------. || .--------------. || .--------------. |
 | |  ___  ____   | || |     ____     | || | ____  _____  | || |     ____     | |
@@ -50,6 +50,5 @@ from .soccer import get_elo_season, get_elo_match, validate_elo_df
 from .other import get_txptc_plans
 from .ipinfo_util import geocode_ip
 import logging
-
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())

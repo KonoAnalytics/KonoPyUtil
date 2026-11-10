@@ -2,7 +2,6 @@ from setuptools import setup
 import os
 from codecs import open
 
-
 _here = os.path.abspath(os.path.dirname(__file__))
 
 with open(os.path.join(_here, "README.rst")) as f:
@@ -11,12 +10,13 @@ with open(os.path.join(_here, "README.rst")) as f:
 packages = ["KonoPyUtil", "KonoPyUtil/soccer", "KonoPyUtil/other"]
 
 install_requires = [
-    "pandas==2.2.2",
-    "SQLAlchemy==2.0.32",
-    "environs==11.0.0",
-    "psycopg2-binary==2.9.9",
-    "ipinfo==5.0.1",
-    "requests==2.32.3",
+    "pandas==3.1.1",
+    "SQLAlchemy==2.1.8",
+    "environs==15.2.0",
+    "psycopg2-binary==2.9.13",
+    "ipinfo==5.6.0",
+    "requests==2.34.2",
+    "openpyxl==3.1.5",
 ]
 
 about = {}
@@ -36,8 +36,9 @@ setup(
     package_dir={"KonoPyUtil": "KonoPyUtil"},
     package_data={"KonoPyUtil": ["data/*"]},
     include_package_data=True,
-    python_requires=">=3.10",
+    python_requires=">=3.13",
     install_requires=install_requires,
+    extras_require={"test": ["pytest"]},
     license=about["__license__"],
     project_urls={
         "Source": "https://github.com/konoanalytics/KonoPyUtil",

@@ -84,5 +84,12 @@ def get_engine(credentials=None, **kwargs):
         host = os_credentials.get("HOST", "db_host")
         port = int(os_credentials.get("PORT", "0"))
         dbname = os_credentials.get("DBNAME", "db_name")
-    cstring = f"postgresql://{userid}:{password}@{host}:{port}/{dbname}"
+    else:
+        userid = credentials["USERID"]
+        password = credentials["PASSWORD"]
+        host = credentials["HOST"]
+        port = credentials["PORT"]
+        dbname = credentials["DBNAME"]
+    # explicit psycopg2 driver: SQLAlchemy>=2.1 defaults postgresql:// to psycopg (v3)
+    cstring = f"postgresql+psycopg2://{userid}:{password}@{host}:{port}/{dbname}"
     return sa.create_engine(cstring, **kwargs)

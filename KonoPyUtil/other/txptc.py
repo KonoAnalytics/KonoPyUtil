@@ -6,7 +6,6 @@ import requests
 
 from ..dbutils import get_engine, data_query, command_query, write_dataframe
 
-
 URL = "https://www.powertochoose.org/en-us/Plan/ExportToCsv"
 
 
